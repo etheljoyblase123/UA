@@ -1,0 +1,541 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | University of Abra</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --sky: #87CEEB;
+            --sky-deep: #5DB9E3;
+            --white: #FFFFFF;
+            --black: #000000;
+            --serif: "Source Serif 4", Georgia, serif;
+            --sans: "Source Sans 3", system-ui, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 30px;
+        }
+
+        body {
+            background: var(--sky);
+            color: var(--black);
+            font-family: var(--sans);
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        /* ---------- Header ---------- */
+
+        .about-header {
+            background: var(--white);
+            border-bottom: 3px solid var(--black);
+            padding: 1rem clamp(1.25rem, 5vw, 4rem);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .about-brand {
+            font-family: var(--serif);
+            font-size: clamp(1.1rem, 3vw, 1.7rem);
+            font-weight: 800;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 0.65rem 1.4rem;
+            background: var(--black);
+            color: var(--white);
+            border: 2px solid var(--black);
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .back-btn:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* ---------- Introduction ---------- */
+
+        .about-intro {
+            text-align: center;
+            padding: 4rem 1.5rem 3rem;
+        }
+
+        .about-intro .eyebrow {
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-intro h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            line-height: 1.1;
+        }
+
+        .about-intro p {
+            max-width: 650px;
+            margin: 1rem auto 0;
+        }
+
+        /* ---------- About Navigation ---------- */
+
+        .about-navigation {
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+            padding: 0 1.5rem;
+        }
+
+        .about-navigation h2 {
+            text-align: center;
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .about-nav-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 110px;
+            padding: 1.2rem;
+            background: var(--white);
+            border: 2px solid var(--black);
+            border-radius: 18px;
+            color: var(--black);
+            text-decoration: none;
+            text-align: center;
+            font-weight: 700;
+            transition: 0.2s ease;
+        }
+
+        .about-nav-card:hover {
+            background: var(--black);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        /* ---------- Content Sections ---------- */
+
+        .about-content {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        .about-section {
+            background: var(--white);
+            border: 2px solid var(--black);
+            border-radius: 22px;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            scroll-margin-top: 25px;
+        }
+
+        .section-label {
+            font-weight: 700;
+            color: #287FA5;
+            letter-spacing: 0.12em;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .about-section h2 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.2;
+            margin: 0.4rem 0 1.2rem;
+        }
+
+        .about-section p {
+            margin-bottom: 1rem;
+        }
+
+        /* ---------- History ---------- */
+
+        .history-timeline {
+            border-left: 3px solid var(--sky-deep);
+            margin: 2rem 0 0 0.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .history-item {
+            position: relative;
+            margin-bottom: 1.8rem;
+        }
+
+        .history-item::before {
+            content: "";
+            position: absolute;
+            left: -1.95rem;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--sky-deep);
+            border: 2px solid var(--black);
+        }
+
+        .history-item h3 {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* ---------- Vision and Mission ---------- */
+
+        .vm-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .vm-card {
+            background: var(--sky);
+            border: 2px solid var(--black);
+            border-radius: 18px;
+            padding: 2rem;
+        }
+
+        .vm-card h2 {
+            font-family: var(--serif);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ---------- Goals ---------- */
+
+        .goals-list {
+            padding-left: 1.5rem;
+        }
+
+        .goals-list li {
+            padding-left: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ---------- Footer ---------- */
+
+        .about-footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .about-footer h2 {
+            font-family: var(--serif);
+            margin-bottom: 0.4rem;
+        }
+
+        .about-footer p {
+            font-size: 0.95rem;
+        }
+
+        /* ---------- Responsive ---------- */
+
+        @media (max-width: 800px) {
+            .about-nav-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .vm-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 1rem;
+            }
+
+            .about-header {
+                padding: 1rem;
+            }
+
+            .about-nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-nav-card {
+                min-height: 75px;
+            }
+
+            .about-intro {
+                padding: 3rem 1rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .about-nav-card,
+            .back-btn {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header with Back Button -->
+    <header class="about-header">
+        <div class="about-brand">
+            UNIVERSITY OF ABRA
+        </div>
+
+        <a href="/home" class="back-btn">
+            &larr; Back
+        </a>
+    </header>
+
+    <!-- Introduction -->
+    <section class="about-intro">
+        <p class="eyebrow">GET TO KNOW US</p>
+        <h1>About Us</h1>
+        <p>
+            Discover the history, vision, mission, and goals
+            that guide the University of Abra in its commitment
+            to education and community development.
+        </p>
+    </section>
+
+    <!-- About Us Navigation -->
+    <nav class="about-navigation">
+        <h2>Explore About Us</h2>
+
+        <div class="about-nav-grid">
+
+            <a href="#history" class="about-nav-card">
+                University History
+            </a>
+
+            <a href="#vision" class="about-nav-card">
+                University Vision
+            </a>
+
+            <a href="#mission" class="about-nav-card">
+                University Mission
+            </a>
+
+            <a href="#goals" class="about-nav-card">
+                Goals and Objectives
+            </a>
+
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="about-content">
+
+        <!-- History -->
+        <section class="about-section" id="history">
+
+            <span class="section-label">OUR BEGINNINGS</span>
+
+            <h2>University History</h2>
+
+            <p>
+                The University of Abra traces its roots back to 1908,
+                when it began as an industrial school established by
+                American educator Amos Allen. Its establishment
+                marked the beginning of an institution dedicated
+                to education and community development.
+            </p>
+
+            <p>
+                Throughout the years, the institution experienced
+                several transformations as it expanded its educational
+                programs and services to meet the needs of the people
+                of Abra.
+            </p>
+
+            <div class="history-timeline">
+
+                <div class="history-item">
+                    <h3>1908 – The Beginning</h3>
+                    <p>
+                        The institution started as an industrial school
+                        founded by Amos Allen.
+                    </p>
+                </div>
+
+                <div class="history-item">
+                    <h3>1911 – Lagangilang Farm School</h3>
+                    <p>
+                        The school was given the name Lagangilang
+                        Farm School.
+                    </p>
+                </div>
+
+                <div class="history-item">
+                    <h3>Development Through the Years</h3>
+                    <p>
+                        The institution evolved into Lagangilang
+                        Agricultural School, Lagangilang National
+                        Agricultural School, Lagangilang Agricultural
+                        College, and eventually the Abra State Institute
+                        of Sciences and Technology (ASIST).
+                    </p>
+                </div>
+
+                <div class="history-item">
+                    <h3>2021 – Republic Act No. 11574</h3>
+                    <p>
+                        Republic Act No. 11574 was approved on
+                        July 23, 2021, providing for the conversion
+                        of ASIST into the University of Abra.
+                    </p>
+                </div>
+
+                <div class="history-item">
+                    <h3>2026 – University of Abra</h3>
+                    <p>
+                        The institution officially celebrated its
+                        transition and launch as the University of Abra
+                        in October 2026.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Vision and Mission -->
+        <div class="vm-grid">
+
+            <section class="vm-card" id="vision">
+
+                <span class="section-label">OUR ASPIRATION</span>
+
+                <h2>University Vision</h2>
+
+                <p>
+                    A university that produces quality graduates
+                    who are academically competitive, globally
+                    responsive and locally sustained.
+                </p>
+
+            </section>
+
+            <section class="vm-card" id="mission">
+
+                <span class="section-label">OUR COMMITMENT</span>
+
+                <h2>University Mission</h2>
+
+                <p>
+                    We are committed to be agents in the development
+                    of Abra through enhanced instruction, creative
+                    and innovative researches and projects for public
+                    and community services towards globally competitive
+                    professionals who contribute to the realization
+                    of a nation that enjoys strongly rooted comfortable
+                    and secure life.
+                </p>
+
+            </section>
+
+        </div>
+
+        <!-- Goals and Objectives -->
+        <section class="about-section" id="goals">
+
+            <span class="section-label">OUR DIRECTION</span>
+
+            <h2>Goals and Objectives</h2>
+
+            <p>
+                The University of Abra aims to strengthen its role
+                in education, research, extension, production,
+                and institutional development.
+            </p>
+
+            <ol class="goals-list">
+
+                <li>
+                    To produce quality graduates who are globally
+                    competitive.
+                </li>
+
+                <li>
+                    To develop and generate new knowledge and verify
+                    client-oriented technologies and other solutions
+                    to development problems.
+                </li>
+
+                <li>
+                    To disseminate and showcase client-responsive
+                    technologies and other solutions to development
+                    problems towards improved welfare of local
+                    communities.
+                </li>
+
+                <li>
+                    To engage in viable income-generating projects
+                    to augment the finances of the University.
+                </li>
+
+                <li>
+                    To transform the University of Abra into a dynamic
+                    and responsive learning and performing organization
+                    that efficiently and effectively manages its resources.
+                </li>
+
+            </ol>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="about-footer">
+
+        <h2>University of Abra</h2>
+
+        <p>
+            Knowledge, Excellence, and Service.
+        </p>
+
+        <p>
+            Lagangilang, Abra, Philippines
+        </p>
+
+        <p>
+            &copy; 2026 University of Abra.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+</html>
