@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>University of Abra – Main Campus</title>
+  <link rel="icon" href="{{ url_for('static', filename='img/logo.jpg') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/cover.css') }}">
+</head>
+<body>
+  <main class="cover">
+    <div class="cover__text">
+      <p class="cover__campus">Main Campus</p>
+      <h1 class="cover__title">University of Abra</h1>
+      <p class="cover__pillars">Instruction, research, production and extension, serving the people of Abra.</p>
+      <a class="btn" href="{{ url_for('home') }}">Explore now</a>
+    </div>
+
+    <div class="cover__seal" aria-hidden="false">
+      <img src="{{ url_for('static', filename='img/logo.jpg') }}"
+           alt="University of Abra official seal, established 2021">
+    </div>
+  </main>
+</body>
+</html>

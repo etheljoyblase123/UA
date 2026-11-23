@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Campuses | University of Abra</title>
+
+    <style>
+        :root {
+            --sky: #87CEEB;
+            --sky-deep: #5DB9E3;
+            --white: #FFFFFF;
+            --black: #000000;
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--sky);
+            color: var(--black);
+        }
+
+        header {
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            border-bottom: 2px solid var(--black);
+        }
+
+        .logo {
+            font-family: var(--serif);
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .back-button {
+            text-decoration: none;
+            color: var(--white);
+            background: var(--black);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            background: var(--sky-deep);
+            color: var(--black);
+        }
+
+        .intro {
+            text-align: center;
+            padding: 65px 20px 35px;
+        }
+
+        .intro h1 {
+            font-family: var(--serif);
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .intro p {
+            font-size: 16px;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        .campus-container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 25px 25px 75px;
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(280px, 1fr)
+            );
+            gap: 28px;
+        }
+
+        .campus-card {
+            background: var(--white);
+            border: 2px solid var(--black);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .campus-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .campus-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            background: var(--sky);
+        }
+
+        .campus-content {
+            padding: 24px;
+        }
+
+        .campus-type {
+            display: inline-block;
+            background: var(--sky);
+            border: 1px solid var(--black);
+            border-radius: 20px;
+            padding: 5px 13px;
+            font-size: 12px;
+            margin-bottom: 13px;
+        }
+
+        .campus-content h2 {
+            font-family: var(--serif);
+            font-size: 25px;
+            margin-bottom: 7px;
+        }
+
+        .location {
+            font-size: 14px;
+            margin-bottom: 14px;
+            font-weight: bold;
+        }
+
+        .description {
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .campus-button {
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+            padding: 11px 17px;
+            border-radius: 30px;
+            border: 2px solid var(--black);
+            font-size: 13px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .details-button {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .details-button:hover {
+            background: var(--sky);
+            color: var(--black);
+        }
+
+        .map-button {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .map-button:hover {
+            background: var(--sky-deep);
+        }
+
+        footer {
+            background: var(--white);
+            border-top: 2px solid var(--black);
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 18px 5%;
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .back-button {
+                padding: 9px 14px;
+                font-size: 12px;
+            }
+
+            .intro h1 {
+                font-size: 32px;
+            }
+
+            .campus-container {
+                padding: 20px 16px 50px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .campus-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">UNIVERSITY OF ABRA</div>
+
+    <a href="{{ url_for('home') }}" class="back-button">
+        Back to Home
+    </a>
+</header>
+
+<section class="intro">
+    <h1>Our Campuses</h1>
+
+    <p>
+        Discover the different campuses of the University of Abra.
+        Explore each campus, learn about its academic programs,
+        and view its location on the map.
+    </p>
+</section>
+
+<main class="campus-container">
+
+    {% for slug, campus in campuses.items() %}
+
+    <article class="campus-card">
+
+        {% if slug == "bangued" %}
+            <img
+                src="{{ url_for('static', filename='img/campuses/bangued.jpeg') }}"
+                alt="University of Abra Bangued Campus"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https://placehold.co/800x450/87CEEB/000000?text=Bangued+Campus';"
+            >
+
+        {% elif slug == "lagangilang" %}
+            <img
+                src="{{ url_for('static', filename='img/campuses/lagangilang.jpeg') }}"
+                alt="University of Abra Lagangilang Main Campus"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https://placehold.co/800x450/87CEEB/000000?text=Lagangilang+Main+Campus';"
+            >
+
+        {% elif slug == "lapaz" %}
+            <img
+                src="{{ url_for('static', filename='img/campuses/lapaz.jpg') }}"
+                alt="University of Abra La Paz Campus"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https://placehold.co/800x450/87CEEB/000000?text=La+Paz+Campus';"
+            >
+
+        {% else %}
+            <img
+                src="{{ url_for('static', filename=campus.image) }}"
+                alt="{{ campus.name }}"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https://placehold.co/800x450/87CEEB/000000?text=University+of+Abra';"
+            >
+        {% endif %}
+
+        <div class="campus-content">
+
+            <span class="campus-type">
+                {{ campus.type }}
+            </span>
+
+            <h2>{{ campus.name }}</h2>
+
+            <p class="location">
+                📍 {{ campus.location }}
+            </p>
+
+            <p class="description">
+                {{ campus.description }}
+            </p>
+
+            <div class="button-group">
+
+                <a
+                    href="{{ url_for('campus_detail', campus_slug=slug) }}"
+                    class="campus-button details-button">
+                    VIEW PROGRAMS
+                </a>
+
+                <a
+                    href="https://www.google.com/maps/search/?api=1&query={{ ('University of Abra ' ~ campus.name ~ ' Abra')|urlencode }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="campus-button map-button">
+                    VIEW MAP
+                </a>
+
+            </div>
+
+        </div>
+
+    </article>
+
+    {% endfor %}
+
+</main>
+
+<footer>
+    <p>
+        © {{ year }} University of Abra. All Rights Reserved.
+    </p>
+</footer>
+
+</body>
+</html>

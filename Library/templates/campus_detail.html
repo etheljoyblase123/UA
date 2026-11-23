@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ campus.name }} Programs | University of Abra</title>
+
+    <style>
+        :root {
+            --sky: #87CEEB;
+            --sky-deep: #5DB9E3;
+            --white: #FFFFFF;
+            --black: #000000;
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--sky);
+            color: var(--black);
+        }
+
+        header {
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            border-bottom: 2px solid var(--black);
+        }
+
+        .logo {
+            font-family: var(--serif);
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .back-button {
+            text-decoration: none;
+            color: var(--white);
+            background: var(--black);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            background: var(--sky-deep);
+            color: var(--black);
+        }
+
+        .intro {
+            text-align: center;
+            padding: 65px 20px 35px;
+        }
+
+        .intro h1 {
+            font-family: var(--serif);
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .intro p {
+            font-size: 16px;
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        .program-container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 25px 25px 75px;
+        }
+
+        .program-card {
+            background: var(--white);
+            border: 2px solid var(--black);
+            border-radius: 18px;
+            padding: 30px;
+        }
+
+        .campus-photo {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+            border: 2px solid var(--black);
+            border-radius: 14px;
+            margin-bottom: 25px;
+            background: var(--sky);
+        }
+
+        .campus-label {
+            display: inline-block;
+            background: var(--sky);
+            border: 1px solid var(--black);
+            border-radius: 20px;
+            padding: 6px 15px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .program-card h2 {
+            font-family: var(--serif);
+            font-size: 27px;
+            margin-bottom: 12px;
+        }
+
+        .program-description {
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .program-list {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(220px, 1fr)
+            );
+            gap: 15px;
+        }
+
+        .program-item {
+            background: var(--sky);
+            border: 1px solid var(--black);
+            border-radius: 12px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            min-height: 65px;
+        }
+
+        .program-number {
+            background: var(--black);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 13px;
+        }
+
+        .back-campus {
+            display: inline-block;
+            margin-top: 28px;
+            text-decoration: none;
+            background: var(--black);
+            color: var(--white);
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .back-campus:hover {
+            background: var(--sky-deep);
+            color: var(--black);
+        }
+
+        footer {
+            background: var(--white);
+            border-top: 2px solid var(--black);
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 18px 5%;
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .back-button {
+                padding: 9px 13px;
+                font-size: 12px;
+            }
+
+            .intro h1 {
+                font-size: 30px;
+            }
+
+            .program-container {
+                padding: 20px 16px 50px;
+            }
+
+            .program-card {
+                padding: 20px;
+            }
+
+            .program-card h2 {
+                font-size: 23px;
+            }
+
+            .campus-photo {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">UNIVERSITY OF ABRA</div>
+
+    <a href="{{ url_for('campus') }}" class="back-button">
+        Back to Campuses
+    </a>
+</header>
+
+<section class="intro">
+    <h1>Academic Programs</h1>
+
+    <p>
+        Explore the academic programs offered at
+        {{ campus.name }} of the University of Abra.
+    </p>
+</section>
+
+<main class="program-container">
+
+    <section class="program-card">
+
+        {% if campus.name == "La Paz Extension Campus" %}
+
+            <img
+                src="{{ url_for('static', filename='img/campuses/lapaz.jpg') }}"
+                alt="University of Abra La Paz Campus"
+                class="campus-photo"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https://placehold.co/800x450/87CEEB/000000?text=La+Paz+Campus';"
+            >
+
+        {% elif campus.name == "Lagangilang Main Campus" %}
+
+            <img
+                src="{{ url_for('static', filename='img/campuses/lagangilang.jpeg') }}"
+                alt="University of Abra Lagangilang Main Campus"
+                class="campus-photo"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https://placehold.co/800x450/87CEEB/000000?text=Lagangilang+Campus';"
+            >
+
+        {% elif campus.name == "Bangued Campus" %}
+
+            <img
+                src="{{ url_for('static', filename='img/campuses/bangued.jpeg') }}"
+                alt="University of Abra Bangued Campus"
+                class="campus-photo"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https://placehold.co/800x450/87CEEB/000000?text=Bangued+Campus';"
+            >
+
+        {% endif %}
+
+        <span class="campus-label">
+            {{ campus.type }}
+        </span>
+
+        <h2>{{ campus.name }}</h2>
+
+        <p class="program-description">
+            {{ campus.description }}
+        </p>
+
+        <h2>Available Programs</h2>
+
+        <div class="program-list">
+
+            {% for program in campus.programs %}
+
+            <div class="program-item">
+                <span class="program-number">
+                    {{ loop.index }}
+                </span>
+
+                <span>{{ program }}</span>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <a href="{{ url_for('campus') }}" class="back-campus">
+            BACK TO ALL CAMPUSES
+        </a>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>
+        © {{ year }} University of Abra. All Rights Reserved.
+    </p>
+</footer>
+
+</body>
+</html>

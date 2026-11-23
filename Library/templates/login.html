@@ -1,0 +1,213 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Login | University of Abra</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.jpg') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+    <style>
+        .login-page {
+            min-height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 750px;
+            text-align: center;
+        }
+
+        .login-container h1 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .login-container .subtitle {
+            font-size: 16px;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .login-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .login-card {
+            background: white;
+            padding: 40px 25px;
+            border: 2px solid black;
+            border-radius: 16px;
+            text-decoration: none;
+            color: black;
+            transition: 0.3s;
+        }
+
+        .login-card:hover {
+            transform: translateY(-7px);
+            background: #EAF8FE;
+        }
+
+        .login-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .login-card h2 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .login-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .choose-button {
+            display: inline-block;
+            background: black;
+            color: white;
+            padding: 11px 25px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .login-card:hover .choose-button {
+            background: #5DB9E3;
+            color: black;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .back-home:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .login-container h1 {
+                font-size: 30px;
+            }
+
+            .login-options {
+                grid-template-columns: 1fr;
+            }
+
+            .login-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="nav">
+
+        <a class="nav__brand" href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='img/logo.jpg') }}"
+                 alt="" width="44" height="44">
+            <span>University of Abra</span>
+        </a>
+
+        <nav class="nav__links" aria-label="Main">
+            <a href="{{ url_for('home') }}">HOME</a>
+            <a href="{{ url_for('about') }}">ABOUT US</a>
+            <a href="{{ url_for('campus') }}">CAMPUSES</a>
+            <a href="{{ url_for('login') }}" style="font-weight: bold;">LOG IN</a>
+        </nav>
+
+    </header>
+
+    <main class="login-page">
+
+        <div class="login-container">
+
+            <h1>Welcome to University of Abra</h1>
+
+            <p class="subtitle">
+                Please select your account type to continue.
+            </p>
+
+            <div class="login-options">
+
+                <!-- STUDENT LOGIN -->
+
+                <a href="{{ url_for('student_login') }}"
+                   class="login-card">
+
+                    <div class="login-icon">🎓</div>
+
+                    <h2>Student</h2>
+
+                    <p>
+                        Access your student account and academic information.
+                    </p>
+
+                    <span class="choose-button">
+                        STUDENT LOGIN
+                    </span>
+
+                </a>
+
+                <!-- ADMIN LOGIN -->
+
+                <a href="{{ url_for('admin_login') }}"
+                   class="login-card">
+
+                    <div class="login-icon">🛡️</div>
+
+                    <h2>Admin</h2>
+
+                    <p>
+                        Access the university administration account.
+                    </p>
+
+                    <span class="choose-button">
+                        ADMIN LOGIN
+                    </span>
+
+                </a>
+
+            </div>
+
+            <a href="{{ url_for('home') }}" class="back-home">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p class="footer__legal">
+            &copy; {{ year }} University of Abra. All rights reserved.
+        </p>
+    </footer>
+
+</body>
+</html>
